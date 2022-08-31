@@ -2,6 +2,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :posts, dependent: :destroy
+  has_many :likes
+  has_many :like_posts, through: :likes, source: :post
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -17,4 +19,9 @@ class User < ApplicationRecord
     # @user.mine?(object)のように利用すると、object.user_id と @user.id を比較する。
     object.user_id == id
   end
+
+  def already_liked?(post)
+    like_posts.include?(post)
+  end
+
 end
