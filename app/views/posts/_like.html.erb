@@ -1,5 +1,5 @@
 <% if current_user.already_liked?(post) %>
-    <td><%= link_to 'Unlike', post_like_path(post.id, current_user.likes.find_by(post_id: post.id)), method: :delete %></td>
+    <td><%= link_to 'UnLike', post_like_path(post.id, current_user.likes.find_by(post_id: post.id)), method: :delete %></td>
 <% else %>
-    <td><%= link_to 'Like', post_likes_path(post_id: post.id), method: :post %></td>
+    <td><%=link_to 'Like', post_likes_path(post_id: post.id), method: :post %></td>
 <% end %> 
