@@ -18,11 +18,9 @@
         <% if current_user.mine?(post) %>
           <td><%= link_to 'Edit', edit_post_path(post) %></td>
           <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-        <% if current_user.already_liked?(post) %>
-          <td><%= link_to 'Like', likes_path(post), method: :post %></td>
         <% else %>
-          <td><%= link_to 'Unlike', "#", method: :delate %></td>
+          <%= render 'like', post: post %>
+        <% end %> 
       </tr>
     <% end %>
   </tbody>
