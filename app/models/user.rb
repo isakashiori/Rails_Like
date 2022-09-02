@@ -2,7 +2,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :posts, dependent: :destroy
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
