@@ -7,6 +7,10 @@ class PostsController < ApplicationController
     @like = Like.new
   end
 
+  def likes
+    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc)
+  end
+
   # GET /posts/1
   def show; end
 
